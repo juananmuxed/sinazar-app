@@ -1,5 +1,6 @@
 <template>
   <v-app :dark="menu.dark">
+    <mux-menulateral></mux-menulateral>
     <mux-navegador></mux-navegador>
     <v-content>
       <v-fade-transition mode="out-in"><router-view/></v-fade-transition>
@@ -11,10 +12,12 @@
 <script>
 import navegador from './components/Naveg.vue'
 import pie from './components/Pie.vue'
+import menulateral from './components/MenuLateral.vue'
 import { mapState } from 'vuex';
 export default {
   name: 'App',
   components: {
+    'mux-menulateral' : menulateral,
     'mux-navegador': navegador,
     'mux-pie': pie
   },

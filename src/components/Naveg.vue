@@ -1,13 +1,13 @@
 <template>
-    <v-toolbar app class="elevation-0" :color="menu.color + selectcolor()">
-        <v-btn icon><v-icon :color="menu.color + selectcolorinvert()">fas fa-bars</v-icon></v-btn>
+    <v-toolbar absolute app class="elevation-0" :color="menu.color + selectcolor()">
+        <v-btn icon @click="menu.drawer = !menu.drawer"><v-icon :color="menu.color + selectcolorinvert()">fas fa-bars</v-icon></v-btn>
         <v-toolbar-title class="text-uppercase font-weight-light display-1">Sin <span class="font-weight-black">Azar</span><v-icon class="pl-3" large :color="menu.color + selectcolorinvert()">fas fa-dice</v-icon></v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-            <v-btn icon v-for="link in menu.links" :to="link.link" :disabled="!link.active" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">{{ 'fas fa-' + link.logo }}</v-icon></v-btn>
+            <v-btn  class="hidden-sm-and-down" icon v-for="link in menu.links" :to="link.link" :disabled="!link.active" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">{{ 'fas fa-' + link.logo }}</v-icon></v-btn>
             <v-menu v-model="menu.active" :close-on-content-click="false" offset-y transition="slide-y-transition">
                 <template v-slot:activator="{ on }">
-                    <v-btn icon v-on="on" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-ellipsis-v</v-icon></v-btn>
+                    <v-btn icon v-on="on" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-wrench</v-icon></v-btn>
                 </template>
                 <v-card>
                     <v-card-title class="title text-uppercase">Opciones</v-card-title>
