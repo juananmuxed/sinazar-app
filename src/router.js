@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import firebase from 'firebase'
 import Router from 'vue-router'
 import Inicio from './views/Inicio.vue'
 import Sobre from './views/Sobre.vue'
@@ -10,7 +11,7 @@ import Creacion from "./views/Creacion.vue"
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -34,11 +35,6 @@ export default new Router({
       component: Opciones
     },
     {
-      path:'/registrar',
-      name: 'registrar',
-      component: Registrar
-    },
-    {
       path:'/entrar',
       name: 'entrar',
       component: Entrar
@@ -47,7 +43,33 @@ export default new Router({
     {
       path:'/crearjuego',
       nombre:'crearjuego',
-      component: Creacion
-    }
+      component: Creacion,
+      meta: {
+        autorizado:true
+      }
+    },
+    {
+      path:'/registrar',
+      name: 'registrar',
+      component: Registrar,
+      meta: {
+        autorizado:true
+      }
+    },
   ]
 })
+
+router.beforeEach((to,from,next) => {
+  let usuario = firebase.auth().currentUser
+  let autorizado = to.matched.some(record => record.meta.autorizado)
+
+  if(autorizado && !usuario){
+    next('entrar')
+  }
+  else {
+    next()
+  }
+})
+
+
+export default router
