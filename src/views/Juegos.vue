@@ -2,7 +2,7 @@
     <v-container fluid>
         <v-layout row wrap>
             <v-flex xs12 md6 lg3 v-for="juego in juegos" pa-2>
-                <v-card elevation="3">
+                <v-card>
                     <v-img :src="juego.imagen" height="140" position="top center"></v-img>
                     <v-card-title>
                         <v-avatar></v-avatar>

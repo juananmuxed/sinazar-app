@@ -8,6 +8,17 @@ import cookie from 'js-cookie'
 Vue.use(Vuex)
 
 const state = {
+  progreso:{
+    snackbar:{
+      activo: false,
+      tiempo: 6000,
+      texto:'',
+      color:'success'
+    },
+    barracarga:{
+
+    }
+  },
   usuario:{
     email:null,
     activo:false
@@ -58,7 +69,15 @@ const mutations = {
 
   // Mutations -- sing in
   cambiarusuario: (state,pay) => state.usuario.email = pay,
-  conectado: (state,pay) => state.usuario.activo = pay
+  conectado: (state,pay) => state.usuario.activo = pay,
+
+  // Mutation -- Snackbar
+  notificacion: (state,[activo,color,tiempo,texto]) => {
+    state.progreso.snackbar.activo = activo
+    state.progreso.snackbar.color = color
+    state.progreso.snackbar.tiempo = tiempo
+    state.progreso.snackbar.texto = texto
+  }
 }
 
 const actions = {
@@ -68,20 +87,31 @@ const actions = {
       commit('conectado',true)
       commit('cambiarusuario',user)
       router.push('/juegos')
-      console.log('Usuario conectado')
+      commit('notificacion', [true,'light-green darken-1',3000,'Usuario conectado correctamente'] )
     },(error) => {
-      console.error(error.code)
+      switch (error.code) {
+        case 'auth/user-not-found':
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Usuario no encontrado'] )
+          break
+        case 'auth/invalid-email':
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Formato de correo no válido'] )
+          break
+        case 'auth/wrong-password':
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Contraseña incorrecta'] )
+          break
+        default:
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Error, pruebe de nuevo'] )
+          break
+      }
     })
   },
   salir({commit}) {
     firebase.auth().signOut().then(()=>{
       commit('conectado',false)
       commit('cambiarusuario',null)
-      router.push('/entrar')
-      console.log('Usuario desconectado')
+      commit('notificacion', [true,'light-green darken-1',3000,'Usuario desconectado correctamente'] )
     },(error) => {
-      console.error(error.code)
-      router.push('/entrar')
+      commit('notificacion', [true,'deep-orange darken-3',3000,'Error al desconectar'] )
     })
   }
 }

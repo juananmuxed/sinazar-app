@@ -8,12 +8,22 @@ import Opciones from "./views/Opciones.vue"
 import Entrar from "./views/Entrar.vue"
 import Registrar from "./views/Registrar.vue";
 import Creacion from "./views/Creacion.vue"
+import Vacio from "./views/404.vue"
 
 Vue.use(Router)
 
 const router = new Router({
   mode: 'history',
   routes: [
+    {
+      path:'*',
+      redirect: '/404'
+    },
+    {
+      path: '/404',
+      name:'404',
+      component: Vacio
+    },
     {
       path: '/',
       name: 'inicio',

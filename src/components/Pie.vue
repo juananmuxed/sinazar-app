@@ -5,7 +5,6 @@
         <span class="font-weight-thin subheading">Administración</span>
         <v-btn icon to="/entrar" active-class="nolink" :ripple="{ class: menu.color + '--text' }" v-if="!autentificado()"><v-icon :color="menu.color + selectcolorinvert()">fas fa-sign-in-alt</v-icon></v-btn>
         <template v-else>
-            <v-btn icon to="/usuario" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-user-tie</v-icon></v-btn>
             <v-btn icon to="/registrar" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-user-plus</v-icon></v-btn>
             <v-btn icon @click="salir" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-sign-out-alt</v-icon></v-btn>
         </template>
