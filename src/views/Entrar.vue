@@ -1,7 +1,7 @@
 <template>
     <v-container fluid>
         <v-layout row wrap>
-            <v-flex pa-2 xs12><span class="display-2">Entrar</span></v-flex>
+            <v-flex pa-2 xs12><span class="display-2 font-weight-light text-uppercase">Entrar</span></v-flex>
         </v-layout>
         <v-form  ref="form">
             <v-layout row wrap>

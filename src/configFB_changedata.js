@@ -1,7 +1,7 @@
 import firebase from 'firebase'
 import 'firebase/database'
 
-// Edit your FIREBASE api configuration 
+// Edit your FIREBASE api configuration and rename this file deleting '_changedata'
 
 var firebaseConfig = {
     apiKey: "",

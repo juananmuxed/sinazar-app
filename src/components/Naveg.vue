@@ -5,7 +5,7 @@
         <v-spacer></v-spacer>
         <v-toolbar-items>
             <v-btn  class="hidden-sm-and-down" icon v-for="link in menu.links" :to="link.link" :disabled="!link.active" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">{{ 'fas fa-' + link.logo }}</v-icon></v-btn>
-            <v-menu v-model="menu.active" :close-on-content-click="false" offset-y transition="slide-y-transition">
+            <v-menu :close-on-content-click="false" offset-y transition="slide-y-transition">
                 <template v-slot:activator="{ on }">
                     <v-btn icon v-on="on" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-wrench</v-icon></v-btn>
                 </template>

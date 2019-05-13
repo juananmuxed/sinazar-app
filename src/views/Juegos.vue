@@ -12,15 +12,11 @@
                         <v-list dense>
                             <v-list-tile>
                                 <v-list-tile-avatar><span class="caption font-weight-light">{{ juego.azar }}/20</span></v-list-tile-avatar>
-                                <v-list-tile-content><v-rating dense v-model="juego.azar" small length="20" empty-icon="fas fa-dice-one" full-icon="fas fa-dice-six" :readonly="true" :background-color="menu.color + ' lighten-3'" :color="menu.color + ' darken-4'"></v-rating></v-list-tile-content>
+                                <v-list-tile-content><v-rating dense v-model="juego.azar" size="14" length="20" empty-icon="fas fa-dice-one" full-icon="fas fa-dice-six" :readonly="true" :background-color="menu.color + ' lighten-2'" :color="menu.color + ' darken-3'"></v-rating></v-list-tile-content>
                             </v-list-tile>
                             <v-list-tile>
-                                <v-list-tile-avatar><span class="caption font-weight-light">{{ juego.pierdeamigos }}/10</span></v-list-tile-avatar>
-                                <v-list-tile-content><v-rating dense v-model="juego.pierdeamigos" small length="10" empty-icon="fas fa-users" full-icon="fas fa-user" :readonly="true" :background-color="menu.color + ' lighten-3'" :color="menu.color + ' darken-4'"></v-rating></v-list-tile-content>
-                            </v-list-tile>
-                            <v-list-tile>
-                                <v-list-tile-avatar><span class="caption font-weight-light">{{ juego.nota }}/10</span></v-list-tile-avatar>
-                                <v-list-tile-content><v-rating dense v-model="juego.nota" small length="10" empty-icon="far fa-star" full-icon="fas fa-star" :readonly="true" :background-color="menu.color + ' lighten-3'" :color="menu.color + ' darken-4'"></v-rating></v-list-tile-content>
+                                <v-list-tile-avatar><span class="caption font-weight-light">{{ juego.pierdeamigos }}/20</span></v-list-tile-avatar>
+                                <v-list-tile-content><v-rating dense v-model="juego.pierdeamigos" size="14" length="20" empty-icon="far fa-user" full-icon="fas fa-user" :readonly="true" :background-color="menu.color + ' lighten-2'" :color="menu.color + ' darken-3'"></v-rating></v-list-tile-content>
                             </v-list-tile>
                         </v-list>
                     </v-card-text>
