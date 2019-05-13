@@ -160,6 +160,7 @@ const actions = {
     firebase.auth().signOut().then(()=>{
       commit('conectado',false)
       commit('cambiarusuario',null)
+      router.push('/')
       commit('notificacion', [true,'light-green darken-1',3000,'Usuario desconectado correctamente'] )
     },(error) => {
       commit('notificacion', [true,'deep-orange darken-3',3000,'Error al desconectar'] )
