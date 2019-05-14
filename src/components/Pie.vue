@@ -1,6 +1,6 @@
 <template>
     <v-footer app :color="menu.color + selectcolor()" class="pa-3">
-        <span class="mr-3 hidden-sm-and-down">MuXeD </span><v-icon class="ml-1 mr-1 hidden-sm-and-down">far fa-copyright</v-icon>
+        <span class="mr-1 hidden-sm-and-down">MuXeD</span><v-icon class="mr-5 hidden-sm-and-down">far fa-copyright</v-icon>
         <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
             <template v-slot:activator="{ on }">
                 <v-btn v-on="on" icon target="_blank" href="https://github.com/juananmuxed/sinazar-app" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fab fa-github</v-icon></v-btn>
