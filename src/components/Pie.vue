@@ -3,23 +3,23 @@
         <span class="mr-3 hidden-sm-and-down">MuXeD </span><v-icon class="ml-1 mr-1 hidden-sm-and-down">far fa-copyright</v-icon>
         <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
             <template v-slot:activator="{ on }">
-                <v-btn class="hidden-sm-and-down" v-on="on" flat target="_blank" href="https://github.com/juananmuxed/sinazar-app" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fab fa-github</v-icon></v-btn>
+                <v-btn v-on="on" icon target="_blank" href="https://github.com/juananmuxed/sinazar-app" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fab fa-github</v-icon></v-btn>
             </template>
             <span>GitHub</span>
         </v-tooltip>
         <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
             <template v-slot:activator="{ on }">
-                <v-btn class="hidden-sm-and-down" v-on="on" flat target="_blank" href="https://github.com/juananmuxed/sinazar-app/wiki/Inicio" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fab fa-wikipedia-w</v-icon></v-btn>
+                <v-btn v-on="on" icon target="_blank" href="https://github.com/juananmuxed/sinazar-app/wiki/Inicio" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fab fa-wikipedia-w</v-icon></v-btn>
             </template>
             <span>WikiGit</span>
         </v-tooltip>
         <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
             <template v-slot:activator="{ on }">
-                <v-btn class="hidden-sm-and-down" v-on="on" flat target="_blank" href="http://muxed.es/" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-globe</v-icon></v-btn>
+                <v-btn dense v-on="on" icon target="_blank" href="http://muxed.es/" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-globe</v-icon></v-btn>
             </template>
             <span>MuXeD</span>
         </v-tooltip>
-        <v-spacer class="mr-3 hidden-sm-and-down"></v-spacer>
+        <v-spacer class="mr-3"></v-spacer>
         <v-chip class="mr-3 hidden-sm-and-down" label>Beta</v-chip>
         <v-chip class="mr-3 hidden-sm-and-down" label>Versión v0.1</v-chip>
         <template v-if="!autentificado()">
@@ -33,19 +33,19 @@
         <template v-else>
             <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
                 <template v-slot:activator="{ on }">
-                    <v-btn flat v-on="on" to="/crearjuego" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-plus-square</v-icon></v-btn>
+                    <v-btn icon v-on="on" to="/crearjuego" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-plus-square</v-icon></v-btn>
                 </template>
                 <span>Añadir juego</span>
             </v-tooltip>
             <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
                 <template v-slot:activator="{ on }">
-                    <v-btn flat v-on="on" to="/registrar" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-user-plus</v-icon></v-btn>
+                    <v-btn icon v-on="on" to="/registrar" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-user-plus</v-icon></v-btn>
                 </template>
                 <span>Registrar Admin</span>
             </v-tooltip>
             <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
                 <template v-slot:activator="{ on }">
-                    <v-btn flat v-on="on" @click="salir" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-sign-out-alt</v-icon></v-btn>
+                    <v-btn icon v-on="on" @click="salir" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-sign-out-alt</v-icon></v-btn>
                 </template>
                 <span>Desconectar</span>
             </v-tooltip>

@@ -1,4 +1,4 @@
-# sinazar-app
+# Sin Azar
 
 ## Project setup
 ```

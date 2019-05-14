@@ -9,6 +9,7 @@ import Entrar from "./views/Entrar.vue"
 import Registrar from "./views/Registrar.vue";
 import Creacion from "./views/Creacion.vue"
 import Vacio from "./views/404.vue"
+import VerificarCorreo from "./views/VerificarCorreo.vue"
 
 Vue.use(Router)
 
@@ -47,7 +48,10 @@ const router = new Router({
     {
       path:'/entrar',
       name: 'entrar',
-      component: Entrar
+      component: Entrar,
+      meta:{
+        logeado:true
+      }
     },
     // Rutas bloqueadas
     {
@@ -55,7 +59,8 @@ const router = new Router({
       nombre:'crearjuego',
       component: Creacion,
       meta: {
-        autorizado:true
+        autorizado:true,
+        verificado:true
       }
     },
     {
@@ -63,18 +68,42 @@ const router = new Router({
       name: 'registrar',
       component: Registrar,
       meta: {
-        autorizado:true
+        autorizado:true,
+        verificado:true
       }
     },
+    {
+      path:'/verificadoemail',
+      name:'verificadoemail',
+      component: VerificarCorreo,
+      meta:{
+        autorizado:true
+      }
+    }
   ]
 })
 
 router.beforeEach((to,from,next) => {
   let usuario = firebase.auth().currentUser
+  if(usuario === null){
+    usuario = ''
+  }
   let autorizado = to.matched.some(record => record.meta.autorizado)
+  let login = to.matched.some(record => record.meta.logeado)
+  let emailverificado = null
+  if(usuario){
+    emailverificado = usuario.emailVerified
+  }
+  let verificado = to.matched.some(record => record.meta.verificado)
 
-  if(autorizado && !usuario){
+  if(autorizado && (!usuario || usuario === null)){
     next('entrar')
+  }
+  else if (verificado && !emailverificado && (usuario || usuario !== null)){
+    next('verificadoemail')
+  }
+  else if (usuario && login){
+    next('juegos')
   }
   else {
     next()

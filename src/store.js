@@ -18,15 +18,17 @@ const state = {
       color:'success'
     },
     barracarga:{
-      testeoid: {
-        valor: 0,
-        activo: false,
-      }
+      valor: 0,
+      activo: false,
     }
   },
   usuario:{
     email:null,
-    activo:false
+    activo:false,
+    verificado:false,
+    nombre:'',
+    foto:'',
+    uid:''
   },
   formulario:{ 
     registrar:{
@@ -87,7 +89,13 @@ const mutations = {
   changecolor: (state,color) => state.menu.color = color,
 
   // Mutations -- sing in
-  cambiarusuario: (state,pay) => state.usuario.email = pay,
+  cambiarusuario: (state,pay) => {
+    state.usuario.uid = pay.uid
+    state.usuario.verificado = pay.emailVerified
+    state.usuario.nombre = pay.displayName
+    state.usuario.foto = pay.photoURL
+    state.usuario.email = pay.email
+  },
   conectado: (state,pay) => state.usuario.activo = pay,
 
   // Mutation -- Snackbar
@@ -100,9 +108,9 @@ const mutations = {
 
   // Mutation - progress bars
 
-  barracargaid: (state,[estado,progreso]) => {
-    state.progreso.barracarga.testeoid.activo = estado
-    state.progreso.barracarga.testeoid.valor = progreso
+  barracarga: (state,[estado,progreso]) => {
+    state.progreso.barracarga.activo = estado
+    state.progreso.barracarga.valor = progreso
   },
 
   // Mutation - New game
@@ -134,9 +142,10 @@ const mutations = {
 const actions = {
   entrar({commit},{mail,pass}){
     firebase.auth().signInWithEmailAndPassword(mail,pass)
-    .then(user => {
+    .then((user) => {
+      var usuario = user.user
       commit('conectado',true)
-      commit('cambiarusuario',user)
+      commit('cambiarusuario',usuario)
       router.push('/juegos')
       commit('notificacion', [true,'light-green darken-1',3000,'Usuario conectado correctamente'] )
     },(error) => {
@@ -156,10 +165,56 @@ const actions = {
       }
     })
   },
+  registrar({commit,dispatch},{mail,pass}){
+    firebase.auth().createUserWithEmailAndPassword(mail,pass).then(()=>{
+      dispatch('salir')
+      router.push('/juegos')
+      commit('notificacion', [true,'light-green darken-1',3000,'Usuario creado correctamente: ' + mail] )
+    })
+    .catch((error) => {
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          commit('notificacion', [true,'deep-orange darken-3',4000,'Correo en uso, usa otro'] )
+          break
+        case 'auth/invalid-email':
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Correo no válido'] )
+          break
+        case 'auth/weak-password':
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Contraseña muy débil'] )
+          break
+        case 'auth/operation-not-allowed':
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Creación no permitida'] )
+          break
+        default:
+          commit('notificacion', [true,'deep-orange darken-3',3000,'Error, pruebe de nuevo'] )
+          break
+      }
+    })
+  },
+  revisarusuario(){
+    var user = firebase.auth().currentUser
+    var usuario = {}
+    if(user) {
+      usuario.name = user.displayName;
+      usuario.email = user.email;
+      usuario.photoUrl = user.photoURL;
+      usuario.emailVerified = user.emailVerified;
+      usuario.uid = user.uid;
+    }
+    console.log(usuario)
+  },
   salir({commit}) {
+    var usuariovacio ={
+      email:null,
+      activo:false,
+      verificado:false,
+      nombre:'',
+      foto:'',
+      uid:''
+    }
     firebase.auth().signOut().then(()=>{
       commit('conectado',false)
-      commit('cambiarusuario',null)
+      commit('cambiarusuario',usuariovacio)
       router.push('/')
       commit('notificacion', [true,'light-green darken-1',3000,'Usuario desconectado correctamente'] )
     },(error) => {
@@ -169,16 +224,16 @@ const actions = {
   testeoidbgg({state,commit,dispatch},id) {
     const thingbgg = 'https://boardgamegeek.com/xmlapi2/thing?id=' + id
     state.nuevojuego.id = state.nuevojuego.idtemporal
-    commit('barracargaid',[true,10])
+    commit('barracarga',[true,10])
     axios.get(thingbgg).then((respuesta) => {
       xml2js.parseString(respuesta.data,{ mergeAttrs: true, explicitArray:false },function(error,datosbusqueda){
         if(!error){
           if(!datosbusqueda.items.item){
             commit('notificacion', [true,'deep-orange darken-3',3000,'Item no encontrado'] )
             dispatch('limpiarcreacion')
-            commit('barracargaid',[true,100])
+            commit('barracarga',[true,100])
             setTimeout(() => {  
-              commit('barracargaid',[false,0])
+              commit('barracarga',[false,0])
             }, 800)
           }
           else{
@@ -201,16 +256,16 @@ const actions = {
             else{nombre = datosbusqueda.items.item.name.value}
             commit('datosporid',[nombre,id,imagen,desc,edadminima,jug,ano,duracion])
             commit('notificacion', [true,'light-green darken-1',3000,'Nombre del juego: ' + nombre] )
-            commit('barracargaid',[true,100])
+            commit('barracarga',[true,100])
             setTimeout(() => {  
-              commit('barracargaid',[false,0])
+              commit('barracarga',[false,0])
             }, 800)
           }
         }else{
           commit('notificacion', [true,'deep-orange darken-3',3000,'Error al cargar'] )
-          commit('barracargaid',[true,100])
+          commit('barracarga',[true,100])
           setTimeout(() => {  
-            commit('barracargaid',[false,0])
+            commit('barracarga',[false,0])
           }, 800)
         }
       })
@@ -218,6 +273,24 @@ const actions = {
   },
   limpiarcreacion({commit}) {
     commit('limpiarcreacionform')
+  },
+  verificarmail({commit,dispatch}){
+    commit('barracarga',[true,10])
+    firebase.auth().currentUser.sendEmailVerification().then(function(){
+      commit('notificacion',[true,'light-green darken-1',3000,'Correo de Verificación enviado'])
+      commit('barracarga',[true,100])
+      setTimeout(() => {  
+        commit('barracarga',[false,0])
+      }, 800)
+      router.push('/')
+      dispatch('salir')
+    }).catch(error=>{
+      commit('notificacion', [true,'deep-orange darken-3',3000,'Error al enviar el correo'] )
+      commit('barracarga',[true,100])
+      setTimeout(() => {  
+        commit('barracarga',[false,0])
+      }, 800)
+    })
   },
   guardarjuego({state,commit,dispatch}) {
     const thingbggcarga = 'https://boardgamegeek.com/xmlapi2/thing?id=' + state.nuevojuego.id
@@ -241,7 +314,8 @@ const actions = {
               jugadores:state.nuevojuego.jugadores,
               ano:state.nuevojuego.ano,
               duracion:state.nuevojuego.duracion,
-              azar:state.nuevojuego.azar
+              azar:state.nuevojuego.azar,
+              uidusuario:firebase.auth().currentUser.uid
             }).then(function(){
               commit('notificacion',[true,'light-green darken-1',3000,'Juego añadido'])
               router.push('/juegos')
@@ -267,6 +341,9 @@ const getters = {
   },
   autentificado(state){
     return state.usuario.activo === true
+  },
+  verificado(state){
+    return state.usuario.verificado === true
   },
   entendido(state){
     if(state.nuevojuego.idtemporal === '' && state.nuevojuego.id === ''){return true}
