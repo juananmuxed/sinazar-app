@@ -10,6 +10,7 @@ import xml2js from 'xml2js'
 Vue.use(Vuex)
 
 const state = {
+  juegos:[],
   progreso:{
     snackbar:{
       activo: false,
@@ -65,7 +66,13 @@ const state = {
       {name:'Inicio',link:'/',active:true,logo:'home'},
       {name:'Juegos',link:'/juegos',active:true,logo:'dice-six'},
       {name:'Sobre la web',link:'/sobre',active:true,logo:'info'}
-    ]
+    ],
+    paginacion:{
+      descending:false,
+      page:1,
+      rowsPerPage: 4,
+      totalItems:null
+    }
   },
   nuevojuego:{
     id:'',
@@ -84,6 +91,9 @@ const state = {
 }
 
 const mutations = {
+  // Mutations -- pagination
+  paginascambiar: (state,value) => state.menu.paginacion.rowsPerPage = value,
+
   // Mutations -- toolbar
   changelight: (state,value) => state.menu.dark = value,
   changecolor: (state,color) => state.menu.color = color,
@@ -140,6 +150,61 @@ const mutations = {
 }
 
 const actions = {
+  cargarjuegos({commit,state}){
+    var progreso = 10
+    commit('barracarga',[true, progreso])
+    const fb = require('./configFB.js')
+    const db = fb.db
+    db.collection('juegos').get().then((snapshot) => {
+      var porcen = Math.round(90/snapshot.size)
+      state.juegos = []
+      snapshot.forEach(juego => {
+        progreso = progreso + porcen
+        commit('barracarga',[true,progreso])
+        var colorazar
+        var colorpierde
+        if(juego.data().azar < 6){
+            colorazar = 'deep-orange darken-3'
+        }
+        else if(juego.data().azar < 11 && juego.data().azar > 5) {
+            colorazar = 'orange darken-1'
+        }
+        else if(juego.data().azar < 16 && juego.data().azar > 10) {
+            colorazar = 'lime darken-2'
+        }
+        else {
+            colorazar = 'green darken-2'
+        }
+        if(juego.data().pierdeamigos < 6){
+            colorpierde = 'deep-orange darken-3'
+        }
+        else if(juego.data().pierdeamigos < 11 && juego.data().pierdeamigos > 5) {
+            colorpierde = 'orange darken-1'
+        }
+        else if(juego.data().pierdeamigos < 16 && juego.data().pierdeamigos > 10) {
+            colorpierde = 'lime darken-2'
+        }
+        else {
+            colorpierde = 'green darken-2'
+        }
+        state.juegos.push({
+            key: juego.id,
+            id: juego.data().idbgg,
+            nombre: juego.data().nombre,
+            azar: juego.data().azar,
+            imagen: juego.data().imagen,
+            pierdeamigos: juego.data().pierdeamigos,
+            ano:juego.data().ano,
+            colorazar: colorazar,
+            colorpierde: colorpierde
+        })
+      })
+    })
+    commit('barracarga',[true,100])
+    setTimeout(() => {
+      commit('barracarga',[false,100])
+    }, 1000);     
+  },
   entrar({commit},{mail,pass}){
     firebase.auth().signInWithEmailAndPassword(mail,pass)
     .then((user) => {
