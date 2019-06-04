@@ -33,6 +33,15 @@
         <template v-else>
             <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
                 <template v-slot:activator="{ on }">
+                    <v-btn icon v-on="on" :to="{ name:'admin' }" v-if="autentificado()" active-class="nolink" :ripple="{ class: menu.color + '--text' }">
+                        <v-icon v-if="!usuario.foto" :color="menu.color + selectcolorinvert()">fas fa-user</v-icon>
+                        <v-avatar class="pb-3" v-if="usuario.foto"><img :src="usuario.foto" :alt="usuario.email"></v-avatar>
+                    </v-btn>
+                </template>
+                <span>Usuario Admin</span>
+            </v-tooltip>
+            <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
+                <template v-slot:activator="{ on }">
                     <v-btn icon v-on="on" to="/crearjuego" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-plus-square</v-icon></v-btn>
                 </template>
                 <span>Añadir juego</span>
@@ -57,11 +66,11 @@
 import { mapState , mapGetters, mapActions } from "vuex";
 export default {
     computed:{
-        ...mapState(['menu'])
+        ...mapState(['menu','usuario'])
     },
     methods:{
         ...mapGetters(['selectcolor','selectcolorinvert','autentificado']),
-        ...mapActions(['salir'])
+        ...mapActions(['salir','revisarusuario'])
     }
 }
 </script>

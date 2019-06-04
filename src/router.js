@@ -10,6 +10,9 @@ import Registrar from "./views/Registrar.vue";
 import Creacion from "./views/Creacion.vue"
 import Vacio from "./views/404.vue"
 import VerificarCorreo from "./views/VerificarCorreo.vue"
+import Juego from './views/Juego.vue'
+import Editarjuego from './views/EdicionJuego.vue'
+import AdminUser from './views/AdminUser.vue'
 
 Vue.use(Router)
 
@@ -41,6 +44,11 @@ const router = new Router({
       component: Juegos
     },
     {
+      path:'/juego/:id',
+      name:'juego',
+      component: Juego
+    },
+    {
       path:'/opciones',
       name: 'opciones',
       component: Opciones
@@ -56,8 +64,17 @@ const router = new Router({
     // Rutas bloqueadas
     {
       path:'/crearjuego',
-      nombre:'crearjuego',
+      name:'crearjuego',
       component: Creacion,
+      meta: {
+        autorizado:true,
+        verificado:true
+      }
+    },
+    {
+      path:'/editarjuego/:id',
+      name:'editarjuego',
+      component: Editarjuego,
       meta: {
         autorizado:true,
         verificado:true
@@ -70,6 +87,14 @@ const router = new Router({
       meta: {
         autorizado:true,
         verificado:true
+      }
+    },
+    {
+      path:'/admin',
+      name:'admin',
+      component: AdminUser,
+      meta:{
+        autorizado:true
       }
     },
     {

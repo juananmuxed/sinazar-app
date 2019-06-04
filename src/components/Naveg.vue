@@ -4,7 +4,6 @@
         <v-toolbar-title class="text-uppercase font-weight-light display-1">Sin <span class="font-weight-black">Azar</span><v-icon class="pl-3" large :color="menu.color + selectcolorinvert()">fas fa-dice</v-icon></v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
-            <v-btn icon @click="revisarusuario" v-if="autentificado()" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">fas fa-user</v-icon></v-btn>
             <v-btn  class="hidden-sm-and-down" icon v-for="link in menu.links" :to="link.link" :disabled="!link.active" active-class="nolink" :ripple="{ class: menu.color + '--text' }"><v-icon :color="menu.color + selectcolorinvert()">{{ 'fas fa-' + link.logo }}</v-icon></v-btn>
             <v-menu :close-on-content-click="false" offset-y transition="slide-y-transition">
                 <template v-slot:activator="{ on }">
@@ -26,7 +25,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations, mapGetters, mapActions } from "vuex";
+import { mapState, mapMutations, mapGetters } from "vuex";
 export default {
     computed:{
         ...mapState(['menu']),
@@ -40,8 +39,7 @@ export default {
         },
     },
     methods:{
-        ...mapGetters(['selectcolor','selectcolorinvert','autentificado']),
-        ...mapActions(['revisarusuario'])
+        ...mapGetters(['selectcolor','selectcolorinvert','autentificado'])
     }
 }
 </script>
