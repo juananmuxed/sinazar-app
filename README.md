@@ -13,6 +13,11 @@ Parte de un Tweet de Vilvoh (usuario de Twitter)
 ## Versión de la APP
 ![Versión](https://img.shields.io/badge/dynamic/json.svg?color=informational&label=Sin%20Azar&prefix=v.&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fjuananmuxed%2Fsinazar-app%2Fmaster%2Fpackage.json)
 
+### Github
+[![GitHub issues](https://img.shields.io/github/issues/juananmuxed/sinazar-app.svg)](https://github.com/juananmuxed/sinazar-app/issues)
+[![GitHub forks](https://img.shields.io/github/forks/juananmuxed/sinazar-app.svg)](https://github.com/juananmuxed/sinazar-app/network)
+[![GitHub stars](https://img.shields.io/github/stars/juananmuxed/sinazar-app.svg)](https://github.com/juananmuxed/sinazar-app/stargazers)
+[![GitHub license](https://img.shields.io/github/license/juananmuxed/sinazar-app.svg)](https://github.com/juananmuxed/sinazar-app)
 
 ### Compiles and hot-reloads for development
 ```
