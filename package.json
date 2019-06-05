@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test": "jshint src/App.vue"
+    "test": "jshint src/main.js"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
