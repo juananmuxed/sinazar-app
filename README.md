@@ -8,12 +8,11 @@ Parte de un Tweet de Vilvoh (usuario de Twitter)
 
 
 ## ÍNDICE
-1. [Estado de la APP](#Estado-de-la-APP)
+1. [Versión de la APP](#version-de-la-app)
 
-## Estado de la APP
-```
-npm install
-```
+## Versión de la APP
+![Versión](https://img.shields.io/badge/dynamic/json.svg?color=informational&label=Sin%20Azar&prefix=v.&query=version&url=https%3A%2F%2Fraw.githubusercontent.com%2Fjuananmuxed%2Fsinazar-app%2Fmaster%2Fpackage.json)
+
 
 ### Compiles and hot-reloads for development
 ```
