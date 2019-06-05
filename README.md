@@ -15,7 +15,9 @@ Parte de un Tweet de Vilvoh (usuario de Twitter)
     * [Base](#base)
     * [Librerias Github](#librerias-git)
 3. [Contribuir](#contribuir)
-4. [Contacto](#contacto)
+4. [Licencia](#licencia)
+5. [Autores](#autores)
+6. [Contacto](#contacto)
     * [Discord](#discord)
     * [Twitter](#twitter)
     * [Página Web](#web)
@@ -71,7 +73,19 @@ La web se encuentra en fase experimental y se puede ver aquí:
 
 ## Contribuir
 
-    Para contribuir solo tienes que contactar conmigo. 
+Lee [*CONTRIBUTING.md*](https://github.com/juananmuxed/sinazar-app/blob/master/CONTRIBUTING.md) para obtener detalles sobre el código de conducta y el proceso para enviar cambios o modificaciones.
+
+---
+
+## Licencia
+Este proyecto está bajo la licencia GNU General Public License v3.0 - Puedes leer los detalles en el archivo [Licencia GNU](https://github.com/juananmuxed/sinazar-app/blob/master/LICENSE)
+
+---
+
+## Autores
++ *Juan Antonio Sánchez Melero* aka **MuXeD** - Creador 
+
+Mira todos los que han contribuido [**aquí**](https://github.com/juananmuxed/sinazar-app/graphs/contributors).
 
 ---
 
