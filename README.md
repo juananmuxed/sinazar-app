@@ -18,6 +18,13 @@ Parte de un Tweet de Vilvoh (usuario de Twitter)
 [![GitHub forks](https://img.shields.io/github/forks/juananmuxed/sinazar-app.svg)](https://github.com/juananmuxed/sinazar-app/network)
 [![GitHub stars](https://img.shields.io/github/stars/juananmuxed/sinazar-app.svg)](https://github.com/juananmuxed/sinazar-app/stargazers)
 [![GitHub license](https://img.shields.io/github/license/juananmuxed/sinazar-app.svg)](https://github.com/juananmuxed/sinazar-app)
+![GitHub repo size](https://img.shields.io/github/repo-size/juananmuxed/sinazar-app.svg?label=Repo%20Size)
+
+### Discord
+Canal de Discord disponible para hablar conmigo y demás.
+Pásate [![Discord](https://discordapp.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png =240x)](https://discord.gg/T5y9cZV)
+
+![Discord](https://img.shields.io/discord/324463341819133953.svg)
 
 ### Compiles and hot-reloads for development
 ```
