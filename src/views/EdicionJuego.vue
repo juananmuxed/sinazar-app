@@ -31,10 +31,10 @@
                                         </v-text-field>
                                     </v-flex>
                                     <v-flex xs10>
-                                        <span clas="font-weight-bold">Creado por: </span><span>{{ busqueda.juegocargado.uidusuario }}</span><span v-if="busqueda.juegocargado.fcreacion" class="pa-1 text-uppercase caption font-weight-light">({{ busqueda.juegocargado.fcreacion }}</span>
+                                        <span clas="font-weight-bold">Creado por: </span><span>{{ busqueda.juegocargado.uidusuario }}</span><span v-if="busqueda.juegocargado.fcreacion" class="pa-1 text-uppercase caption font-weight-light">({{ busqueda.juegocargado.fcreacion }})</span>
                                     </v-flex>
                                     <v-flex xs10 v-if="busqueda.juegocargado.ultimamodif">
-                                        <span clas="font-weight-light font-italic">Ultima modificación: </span><span>{{ busqueda.juegocargado.modificadopor }}</span><span class="pa-1 text-uppercase caption font-weight-light font-italic">{{ busqueda.juegocargado.ultimamodif }}</span>
+                                        <span clas="font-weight-light font-italic">Ultima modificación: </span><span>{{ busqueda.juegocargado.modificadopor }}</span><span class="pa-1 text-uppercase caption font-weight-light font-italic">({{ busqueda.juegocargado.ultimamodif }})</span>
                                     </v-flex>
                                     <v-flex xs10 md8>
                                         <v-text-field v-model="cambiarimagen" label="Enlace a imagen" :color="menu.color">

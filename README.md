@@ -7,13 +7,13 @@ Parte de un Tweet de Vilvoh (usuario de Twitter)
 [Ver Hilo](https://twitter.com/vilvoh/status/1121008086737666048)  :bowtie:
 
 ---
-## ÍNDICE
-1. [Versión de la APP](#version-de-la-app)
+## Índice
+1. [Versión de la APP](#versión-de-la-app)
     * [Github](#github)
     * [Dependencias](#dependencias)
 2. [Tecnologías Usadas](#tecnologías)
     * [Base](#base)
-    * [Librerias Github](#librerias-git)
+    * [Librerias](#librerías)
 3. [Contribuir](#contribuir)
 4. [Licencia](#licencia)
 5. [Autores](#autores)
@@ -28,7 +28,8 @@ Parte de un Tweet de Vilvoh (usuario de Twitter)
 
 La web se encuentra en fase experimental y se puede ver aquí:
 
-[Sin Azar](http://muxed.es/sinazar/)
+[Sin Azar](http://muxed.es/sinazar/) 
+
 ![Website](https://img.shields.io/website/https/muxed.es/sinazar.svg?down_message=ca%C3%ADda&label=Estado&up_message=activa)
 
 ### Github
@@ -62,7 +63,7 @@ La web se encuentra en fase experimental y se puede ver aquí:
 + [Vuetify](https://vuetifyjs.com/en/) - Material Design para Vue ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/juananmuxed/sinazar-app/vuetify.svg)
 + [Firebase](https://firebase.google.com) - Base de Datos y Autentificación ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/juananmuxed/sinazar-app/firebase.svg)
 
-### Librerias Git
+### Librerías
 + [Axios](https://github.com/axios/axios) ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/juananmuxed/sinazar-app/axios.svg)
 + [JS-Cookie](https://github.com/js-cookie/js-cookie) ![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/juananmuxed/sinazar-app/js-cookie.svg)
 + [Vuex-persistedstate](https://github.com/robinvdvleuten/vuex-persistedstate)![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/juananmuxed/sinazar-app/vuex-persistedstate.svg)

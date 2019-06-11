@@ -236,25 +236,25 @@ const actions = {
           commit('barracarga',[true,progreso])
           var colorazar
           var colorpierde
-          if(juego.data().azar < 6){
+          if(juego.data().azar < 5){
               colorazar = 'deep-orange darken-3'
           }
-          else if(juego.data().azar < 11 && juego.data().azar > 5) {
+          else if(juego.data().azar < 7 && juego.data().azar > 4) {
               colorazar = 'orange darken-1'
           }
-          else if(juego.data().azar < 16 && juego.data().azar > 10) {
+          else if(juego.data().azar < 11 && juego.data().azar > 6) {
               colorazar = 'lime darken-2'
           }
           else {
               colorazar = 'green darken-2'
           }
-          if(juego.data().pierdeamigos < 6){
+          if(juego.data().pierdeamigos < 5){
               colorpierde = 'deep-orange darken-3'
           }
-          else if(juego.data().pierdeamigos < 11 && juego.data().pierdeamigos > 5) {
+          else if(juego.data().pierdeamigos < 7 && juego.data().pierdeamigos > 4) {
               colorpierde = 'orange darken-1'
           }
-          else if(juego.data().pierdeamigos < 16 && juego.data().pierdeamigos > 10) {
+          else if(juego.data().pierdeamigos < 11 && juego.data().pierdeamigos > 6) {
               colorpierde = 'lime darken-2'
           }
           else {
@@ -275,8 +275,8 @@ const actions = {
               edad:juego.data().edadminima,
               jugadores:juego.data().jugadores
           })
-        }
         state.juegosfiltrados = state.juegos
+        }
       })
       .catch(error => {
         commit('notificacion', [true,'deep-orange darken-3',3000,'Error: '+ error] )
@@ -515,10 +515,8 @@ const actions = {
     db.collection('juegos').doc(id).get().then(juego => {
       if(juego.exists){
         commit('barracarga',[true,100])
-        if(state.busqueda.juegocargado === null || state.busqueda.juegocargado.idbgg !== juego.data().idbgg){
-          state.busqueda.juegocargado = juego.data()
-          state.busqueda.juegocargadoraw = juego.data()
-        }
+        state.busqueda.juegocargado = juego.data()
+        state.busqueda.juegocargadoraw = juego.data()
       }
       else{
         commit('barracarga',[true,100])
