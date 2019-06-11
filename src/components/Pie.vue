@@ -21,7 +21,7 @@
         </v-tooltip>
         <v-spacer class="mr-3 hidden-sm-and-down"></v-spacer>
         <v-chip class="mr-3 hidden-sm-and-down" label>Beta</v-chip>
-        <v-chip class="mr-3 hidden-sm-and-down" label>Versión v0.1</v-chip>
+        <v-chip class="mr-3 hidden-sm-and-down" label>Versión v0.2</v-chip>
         <template v-if="!autentificado()">
             <v-tooltip top :color="menu.color + ' ' + menu.color + '--text' + ' text--lighten-4'">
                 <template v-slot:activator="{ on }">
